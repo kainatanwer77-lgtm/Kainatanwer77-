@@ -1,140 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Order System - Kainat</title>
-
+<title>Login - Kainat System</title>
 <style>
-body {font-family: Arial; margin:0; background:#f4f6f9;}
-nav {background:#2c3e50; color:white; padding:15px; text-align:center;}
-.container {width:90%; margin:auto; margin-top:20px;}
-.card {
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    margin-bottom:20px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-input {padding:10px; margin:5px; width:95%;}
-button {
-    padding:10px;
-    background:#27ae60;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-table {width:100%; border-collapse:collapse; margin-top:10px;}
-td,th {border:1px solid #ddd; padding:8px; text-align:center;}
+body{font-family:Arial;background:#2c3e50;color:white;text-align:center}
+.box{background:white;color:black;padding:30px;width:300px;margin:100px auto;border-radius:10px}
+input{padding:10px;margin:10px;width:90%}
+button{padding:10px;background:#27ae60;color:white;border:none}
 </style>
 </head>
 
 <body>
 
-<nav>
-    <h2>🛒 Online Order System</h2>
-    <p>Developed by Kainat Anwer</p>
-</nav>
-
-<div class="container">
-
-<div class="card">
-<h3>Customer Details</h3>
-<input type="text" id="name" placeholder="Enter Your Name">
-</div>
-
-<div class="card">
-<h3>Select Products</h3>
-
-<label>Laptop (Rs 2500)</label>
-<input type="number" id="laptop" min="0" placeholder="Quantity">
-
-<label>Mobile (Rs 1800)</label>
-<input type="number" id="mobile" min="0" placeholder="Quantity">
-
-<label>Headphones (Rs 700)</label>
-<input type="number" id="headphones" min="0" placeholder="Quantity">
-
-<button onclick="generateInvoice()">Generate Invoice</button>
-</div>
-
-<div class="card" id="invoice" style="display:none;">
-<h3>Invoice</h3>
-<p id="cust"></p>
-
-<table id="table">
-<tr>
-<th>Product</th>
-<th>Price</th>
-<th>Qty</th>
-<th>Total</th>
-</tr>
-</table>
-
-<h4 id="subtotal"></h4>
-<h4 id="discount"></h4>
-<h3 id="final"></h3>
-
-</div>
-
+<div class="box">
+<h2>Login</h2>
+<input id="user" placeholder="Username"><br>
+<input id="pass" type="password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
 </div>
 
 <script>
+function login(){
+let u=user.value;
+let p=pass.value;
 
-function generateInvoice(){
-let name=document.getElementById("name").value;
-
-if(name==""){
-alert("Enter your name");
-return;
+if(u=="kainat" && p=="1234"){
+localStorage.setItem("login","true");
+window.location="dashboard.html";
+}else{
+alert("Wrong login");
 }
-
-let products = [
-{name:"Laptop", price:2500, qty:parseInt(document.getElementById("laptop").value)||0},
-{name:"Mobile", price:1800, qty:parseInt(document.getElementById("mobile").value)||0},
-{name:"Headphones", price:700, qty:parseInt(document.getElementById("headphones").value)||0}
-];
-
-let table=document.getElementById("table");
-table.innerHTML="<tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr>";
-
-let subtotal=0;
-
-products.forEach(p=>{
-if(p.qty>0){
-let total=p.price*p.qty;
-subtotal+=total;
-
-let row=table.insertRow();
-row.insertCell(0).innerHTML=p.name;
-row.insertCell(1).innerHTML=p.price;
-row.insertCell(2).innerHTML=p.qty;
-row.insertCell(3).innerHTML=total;
 }
-});
-
-if(subtotal==0){
-alert("Select at least one product");
-return;
-}
-
-let discount = subtotal>5000 ? subtotal*0.10 : 0;
-let final = subtotal - discount;
-
-document.getElementById("cust").innerHTML="Customer: "+name;
-document.getElementById("subtotal").innerHTML="Subtotal: Rs "+subtotal;
-document.getElementById("discount").innerHTML="Discount: Rs "+discount;
-document.getElementById("final").innerHTML="Final Total: Rs "+final;
-
-document.getElementById("invoice").style.display="block";
-
-// SAVE (local storage)
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-orders.push({name, subtotal, discount, final});
-localStorage.setItem("orders", JSON.stringify(orders));
-}
-
 </script>
 
 </body>
-  </html>
+</html>
