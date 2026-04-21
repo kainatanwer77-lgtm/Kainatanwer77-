@@ -1,66 +1,117 @@
-body{
+body {
+  margin: 0;
   font-family: Arial;
-  background:#f5f5f5;
-  margin:0;
+  background: black;
+  color: white;
 }
 
-header{
-  background:orange;
-  padding:10px;
-  position:relative;
+/* TOP BAR */
+.topbar {
+  background: gold;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  font-size: 12px;
 }
 
-#search{
-  width:100%;
-  padding:10px;
-  border-radius:20px;
-  border:none;
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid gold;
 }
 
-#products{
-  display:grid;
-  grid-template-columns: repeat(2,1fr);
-  gap:10px;
-  padding:10px;
+header h1 {
+  color: gold;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px gold;
 }
 
-.card{
-  background:white;
-  padding:10px;
-  border-radius:10px;
-  text-align:center;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+.menu, .icons i {
+  font-size: 18px;
 }
 
-.card img{
-  width:100%;
-  height:130px;
-  object-fit:cover;
-  border-radius:10px;
+/* SLIDER */
+.slider {
+  height: 250px;
+  overflow: hidden;
 }
 
-.card p{
-  color:red;
-  font-weight:bold;
+.slide {
+  width: 100%;
+  height: 250px;
+  display: none;
 }
 
-/* AI suggestions */
-#suggestions{
-  background:white;
-  position:absolute;
-  width:95%;
-  top:50px;
-  border-radius:10px;
-  box-shadow:0 2px 5px rgba(0,0,0,0.2);
-  z-index:1000;
+.slide.active {
+  display: block;
 }
 
-.suggest-item{
-  padding:10px;
-  border-bottom:1px solid #eee;
-  cursor:pointer;
+/* SECTION */
+.section-title {
+  text-align: center;
+  margin: 15px;
+  color: gold;
 }
 
-.suggest-item:hover{
-  background:#f0f0f0;
+/* PRODUCTS */
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.card {
+  background: #111;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid gold;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.price {
+  color: gold;
+  font-weight: bold;
+}
+
+.desc {
+  font-size: 12px;
+  color: #ccc;
+}
+
+button {
+  background: gold;
+  color: black;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid gold;
+  margin-top: 20px;
+}
+
+/* WhatsApp */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: green;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
 }
