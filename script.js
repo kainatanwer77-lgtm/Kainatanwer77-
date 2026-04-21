@@ -18,9 +18,13 @@ let order = {
     date
 };
 
-// SAVE DATA (LocalStorage)
+// SAVE DATA
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+// KEEP ONLY LAST 30
 orders.push(order);
+orders = orders.slice(-30);
+
 localStorage.setItem("orders", JSON.stringify(orders));
 
 // SHOW INVOICE
@@ -31,6 +35,7 @@ document.getElementById("invoice").innerHTML = `
 <p>Date: ${date}</p>
 `;
 
+// LOAD HISTORY
 loadHistory();
 }
 
@@ -40,7 +45,7 @@ let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
 let html = "";
 
-orders.slice(-30).reverse().forEach(o=>{
+orders.reverse().forEach(o=>{
 html += `
 <div>
 <p>${o.name} - Rs ${o.total}</p>
@@ -53,4 +58,15 @@ html += `
 document.getElementById("history").innerHTML = html;
 }
 
+// ANIMATION
+window.onload = function(){
+document.querySelectorAll(".product").forEach((p,i)=>{
+p.style.opacity = 0;
+setTimeout(()=>{
+p.style.transition="1s";
+p.style.opacity=1;
+}, i*300);
+});
+
 loadHistory();
+}
