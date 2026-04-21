@@ -1,7 +1,12 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "online_ordering");
+$conn = mysqli_connect(
+    "sql100.infinityfree.com",
+    "if0_41710915",
+    "Kainatanwer77",
+    "if0_41710915_kainat_db"
+);
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Database Connection Failed");
 }
 ?>
