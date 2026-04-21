@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kainat Student Management System</title>
+
+<style>
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+text-align:center;
+}
+
+.container{
+background:white;
+color:black;
+padding:20px;
+margin:40px auto;
+width:90%;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+input{
+padding:10px;
+margin:5px;
+width:80%;
+border-radius:5px;
+border:1px solid gray;
+}
+
+button{
+padding:10px;
+background:#667eea;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+}
+
+td,th{
+border:1px solid black;
+padding:8px;
+}
+
+.slider img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>🎓 Student Management System</h2>
+<p>Developed by Kainat Anwer</p>
+
+<!-- SLIDER -->
+<div class="container slider">
+<img id="slide" src="https://picsum.photos/800/250?1">
+</div>
+
+<div class="container">
+
+<input id="name" placeholder="Name"><br>
+<input id="phone" placeholder="Phone"><br>
+<input id="email" placeholder="Email"><br>
+<input id="address" placeholder="Address"><br>
+
+<button onclick="addData()">Save Data</button>
+
+<table id="table">
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Address</th>
+</tr>
+</table>
+
+</div>
+
+<script>
+
+// SLIDER
+let images=[
+"https://picsum.photos/800/250?1",
+"https://picsum.photos/800/250?2",
+"https://picsum.photos/800/250?3"
+];
+
+let i=0;
+setInterval(()=>{
+i=(i+1)%images.length;
+document.getElementById("slide").src=images[i];
+},2000);
+
+
+// ADD DATA
+function addData(){
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let address=document.getElementById("address").value;
+
+let table=document.getElementById("table");
+let row=table.insertRow();
+
+row.insertCell(0).innerHTML=name;
+row.insertCell(1).innerHTML=phone;
+row.insertCell(2).innerHTML=email;
+row.insertCell(3).innerHTML=address;
+}
+
+</script>
+
+</body>
+  </html>
