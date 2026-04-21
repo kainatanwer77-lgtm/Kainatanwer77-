@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body{font-family:Arial;margin:0;background:#f4f6f9}
+nav{background:#2c3e50;color:white;padding:15px;text-align:center}
+.container{width:90%;margin:auto;margin-top:20px}
+
+.grid{display:flex;gap:20px;flex-wrap:wrap}
+.card{background:white;padding:15px;width:250px;border-radius:10px;text-align:center}
+
+button{padding:10px;background:#27ae60;color:white;border:none;margin-top:10px}
+
+.stats{display:flex;gap:10px;margin-bottom:20px}
+.stat{background:white;padding:15px;border-radius:10px;flex:1;text-align:center}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<h2>🚀 Kainat Final Boss Dashboard</h2>
+<button onclick="logout()">Logout</button>
+</nav>
+
+<div class="container">
+
+<div class="stats">
+<div class="stat" id="orders">Orders: 0</div>
+<div class="stat" id="revenue">Revenue: 0</div>
+<div class="stat" id="today">Today: 0</div>
+</div>
+
+<input id="name" placeholder="Customer Name">
+
+<div class="grid">
+<div class="card"><h3>Laptop</h3><p>2500</p><input id="laptop" type="number"></div>
+<div class="card"><h3>Mobile</h3><p>1800</p><input id="mobile" type="number"></div>
+<div class="card"><h3>Headphones</h3><p>700</p><input id="headphones" type="number"></div>
+</div>
+
+<button onclick="generate()">Generate</button>
+<button onclick="pdf()">PDF</button>
+
+<div id="invoice"></div>
+
+<h3>Sales Chart</h3>
+<canvas id="chart"></canvas>
+
+<h3>History</h3>
+<div id="history"></div>
+
+</div>
+
+<script>
+
+// LOGIN CHECK
+if(localStorage.getItem("login")!="true"){
+window.location="index.html";
+}
+
+// LOGOUT
+function logout(){
+localStorage.removeItem("login");
+location.href="index.html";
+}
+
+// GENERATE
+let last="";
+function generate(){
+let items=[
+{name:"Laptop",price:2500,qty:+laptop.value||0},
+{name:"Mobile",price:1800,qty:+mobile.value||0},
+{name:"Headphones",price:700,qty:+headphones.value||0}
+];
+
+let subtotal=0;
+let html="<h2>Invoice</h2>";
+
+items.forEach(i=>{
+if(i.qty>0){
+let t=i.price*i.qty;
+subtotal+=t;
+html+=`<p>${i.name}: ${t}</p>`;
+}
+});
+
+if(subtotal==0)return alert("Select items");
+
+let discount=subtotal>5000?subtotal*0.1:0;
+let total=subtotal-discount;
+
+let date=new Date().toLocaleDateString();
+
+html+=`<h3>Total: ${total}</h3>`;
+invoice.innerHTML=html;
+
+last=html;
+
+// SAVE
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+orders.push({total,date});
+localStorage.setItem("orders",JSON.stringify(orders));
+
+update();
+}
+
+// DASHBOARD
+function update(){
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+
+let totalOrders=orders.length;
+let revenue=orders.reduce((a,b)=>a+b.total,0);
+
+let todayDate=new Date().toLocaleDateString();
+let today=orders.filter(o=>o.date==todayDate)
+.reduce((a,b)=>a+b.total,0);
+
+ordersDiv.innerText="Orders: "+totalOrders;
+revenueDiv.innerText="Revenue: "+revenue;
+todayDiv.innerText="Today: "+today;
+
+history.innerHTML=orders.map(o=>`<p>${o.total} - ${o.date}</p>`).join("");
+
+drawChart(orders);
+}
+
+// CHART
+function drawChart(data){
+let ctx=document.getElementById("chart");
+
+let totals=data.map(o=>o.total);
+
+new Chart(ctx,{
+type:"bar",
+data:{
+labels:totals.map((_,i)=>"Order "+(i+1)),
+datasets:[{label:"Sales",data:totals}]
+}
+});
+}
+
+// PDF
+function pdf(){
+const {jsPDF}=window.jspdf;
+let doc=new jsPDF();
+doc.text(last,10,10);
+doc.save("invoice.pdf");
+}
+
+update();
+
+</script>
+
+</body>
+  </html>
