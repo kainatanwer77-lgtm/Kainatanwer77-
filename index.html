@@ -9,19 +9,18 @@
 
 <header>
   <input type="text" id="search" placeholder="Search products...">
+  <button onclick="searchProduct()">Search</button>
 </header>
 
-<div id="product-list"></div>
+<div id="products"></div>
 
-<!-- Bottom Menu -->
-<nav class="bottom-nav">
-  <button onclick="showAll()">Home</button>
-  <button onclick="showCategory('electronics')">Categories</button>
-  <button onclick="viewCart()">Cart</button>
-  <button onclick="viewOrders()">Account</button>
-</nav>
+<div class="bottom-menu">
+  <button onclick="displayProducts(products)">Home</button>
+  <button>Categories</button>
+  <button>Cart</button>
+  <button>Account</button>
+</div>
 
-<script src="products.js"></script>
 <script src="script.js"></script>
 
 </body>
