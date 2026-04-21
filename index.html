@@ -1,47 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Kainat Smart Store</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kainat Smart Store - Online Shopping Pakistan</title>
+
+<meta name="description" content="Buy laptops, mobiles and accessories online from Kainat Smart Store. Best prices in Pakistan.">
+<meta name="keywords" content="laptop price Pakistan, mobile price, online shopping Pakistan">
+<meta name="author" content="Kainat Store">
+
+<link rel="preload" href="style.css" as="style">
 <link rel="stylesheet" href="style.css">
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/263/263142.png">
+
+<script defer src="script.js"></script>
+
 </head>
 
 <body>
 
 <header>
-    <h1>🛍️ Kainat Smart Store</h1>
+    🛍️ Kainat Smart Store
 </header>
 
 <div class="container">
 
 <input type="text" id="name" placeholder="Enter Your Name">
 
+<!-- PRODUCT 1 -->
 <div class="product">
-    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png">
-    <h3>Laptop - Rs 50000</h3>
-    <input type="number" id="laptop">
+<img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" loading="lazy">
+<h3>Laptop - Rs 50000</h3>
+<input type="number" id="laptop" placeholder="Quantity">
 </div>
 
+<!-- PRODUCT 2 -->
 <div class="product">
-    <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png">
-    <h3>Mobile - Rs 40000</h3>
-    <input type="number" id="mobile">
+<img src="https://cdn-icons-png.flaticon.com/512/15/15874.png" loading="lazy">
+<h3>Mobile - Rs 40000</h3>
+<input type="number" id="mobile" placeholder="Quantity">
 </div>
 
+<!-- PRODUCT 3 -->
 <div class="product">
-    <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
-    <h3>Headphones - Rs 2500</h3>
-    <input type="number" id="headphones">
+<img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" loading="lazy">
+<h3>Headphones - Rs 2500</h3>
+<input type="number" id="headphones" placeholder="Quantity">
 </div>
 
 <button onclick="generateInvoice()">Generate Invoice</button>
 
 <div id="invoice"></div>
 
-<h2>Order History</h2>
+<h2>📊 Order History</h2>
 <div id="history"></div>
 
 </div>
 
-<script src="script.js"></script>
 </body>
 </html>
