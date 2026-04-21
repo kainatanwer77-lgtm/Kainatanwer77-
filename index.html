@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login - Kainat System</title>
-<style>
-body{font-family:Arial;background:#2c3e50;color:white;text-align:center}
-.box{background:white;color:black;padding:30px;width:300px;margin:100px auto;border-radius:10px}
-input{padding:10px;margin:10px;width:90%}
-button{padding:10px;background:#27ae60;color:white;border:none;cursor:pointer}
-</style>
+<title>Kainat Smart Store</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="box">
-<h2>Login</h2>
+<header>
+    <h1>🛍️ Kainat Smart Store</h1>
+</header>
 
-<input type="text" id="username" placeholder="Username"><br>
-<input type="password" id="password" placeholder="Password"><br>
+<div class="container">
 
-<button onclick="login()">Login</button>
+<input type="text" id="name" placeholder="Enter Your Name">
+
+<div class="product">
+    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png">
+    <h3>Laptop - Rs 50000</h3>
+    <input type="number" id="laptop">
 </div>
 
-<script>
-function login(){
-let username = document.getElementById("username").value;
-let password = document.getElementById("password").value;
+<div class="product">
+    <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png">
+    <h3>Mobile - Rs 40000</h3>
+    <input type="number" id="mobile">
+</div>
 
-// LOGIN CHECK
-if(username === "admin" && password === "1234"){
-    localStorage.setItem("login","true");
-    window.location.href = "dashboard.html";
-} else {
-    alert("Wrong Username or Password");
-}
-}
-</script>
+<div class="product">
+    <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
+    <h3>Headphones - Rs 2500</h3>
+    <input type="number" id="headphones">
+</div>
 
+<button onclick="generateInvoice()">Generate Invoice</button>
+
+<div id="invoice"></div>
+
+<h2>Order History</h2>
+<div id="history"></div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
