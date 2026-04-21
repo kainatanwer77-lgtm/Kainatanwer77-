@@ -1,13 +1,15 @@
 body {
-    font-family: Arial;
-    background: #f4f6f9;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    color: white;
+    margin: 0;
 }
 
 header {
-    background: #2c3e50;
-    color: white;
-    padding: 15px;
     text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .container {
@@ -16,33 +18,45 @@ header {
 }
 
 .product {
-    background: white;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
     padding: 15px;
-    margin: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px #ccc;
+    margin: 15px 0;
+    border-radius: 15px;
     text-align: center;
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: scale(1.05);
 }
 
 .product img {
     width: 80px;
 }
 
-button {
-    background: #27ae60;
-    color: white;
+input {
     padding: 10px;
+    border-radius: 8px;
     border: none;
     width: 100%;
+    margin-top: 8px;
 }
 
-#invoice {
-    background: white;
+button {
+    background: #00ffcc;
+    color: black;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#invoice, #history {
+    background: rgba(255,255,255,0.1);
     padding: 15px;
     margin-top: 20px;
-}
-
-#history {
-    background: #fff;
-    padding: 10px;
+    border-radius: 10px;
 }
