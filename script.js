@@ -1,51 +1,77 @@
-const products = [
-  {name:"Laptop", price:50000, category:"electronics", img:"https://via.placeholder.com/150"},
-  {name:"Mobile", price:40000, category:"electronics", img:"https://via.placeholder.com/150"},
-  {name:"Headphones", price:2500, category:"electronics", img:"https://via.placeholder.com/150"},
-  
-  {name:"Lipstick", price:500, category:"cosmetics", img:"https://via.placeholder.com/150"},
-  {name:"Face Wash", price:800, category:"cosmetics", img:"https://via.placeholder.com/150"},
-  
-  {name:"Kids Toy Car", price:1200, category:"kids", img:"https://via.placeholder.com/150"},
-  {name:"Baby Dress", price:1500, category:"kids", img:"https://via.placeholder.com/150"},
+const list = document.getElementById("product-list");
+const search = document.getElementById("search");
 
-  {name:"Gold Ring", price:20000, category:"jewelry", img:"https://via.placeholder.com/150"},
-  {name:"Necklace", price:5000, category:"jewelry", img:"https://via.placeholder.com/150"},
+let cart = [];
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  {name:"T Shirt", price:1200, category:"fashion", img:"https://via.placeholder.com/150"},
-  {name:"Shoes", price:3000, category:"fashion", img:"https://via.placeholder.com/150"},
-
-  // AUTO GENERATE MORE PRODUCTS
-  ...Array.from({length:40}, (_,i)=>({
-    name:"Product "+(i+1),
-    price:Math.floor(Math.random()*5000)+500,
-    category:["electronics","cosmetics","kids","jewelry","fashion"][i%5],
-    img:"https://via.placeholder.com/150"
-  }))
-];
-
-function displayProducts(list){
-  const container = document.getElementById("productList");
-  container.innerHTML = "";
-
-  list.forEach(p=>{
-    container.innerHTML += `
-      <div class="card">
-        <img src="${p.img}">
+function displayProducts(items) {
+  list.innerHTML = "";
+  items.forEach(p => {
+    list.innerHTML += `
+      <div class="product">
+        <img src="${p.image}">
         <h4>${p.name}</h4>
-        <p class="price">Rs. ${p.price}</p>
+        <p>Rs. ${p.price}</p>
+        <button onclick="addToCart(${p.id})">Add</button>
       </div>
     `;
   });
 }
 
-function filterProducts(category){
-  if(category==="all"){
-    displayProducts(products);
-  } else {
-    const filtered = products.filter(p=>p.category===category);
-    displayProducts(filtered);
-  }
+displayProducts(products);
+
+// 🔍 SEARCH
+search.addEventListener("keyup", () => {
+  let value = search.value.toLowerCase();
+  let filtered = products.filter(p =>
+    p.name.toLowerCase().includes(value)
+  );
+  displayProducts(filtered);
+});
+
+// 🛒 CART
+function addToCart(id) {
+  let item = products.find(p => p.id === id);
+  cart.push(item);
+  alert("Added to cart");
 }
 
-displayProducts(products);
+// 📦 ORDER
+function viewCart() {
+  let total = cart.reduce((sum, p) => sum + p.price, 0);
+  if (cart.length === 0) return alert("Cart empty");
+
+  let order = {
+    items: cart,
+    total: total,
+    date: new Date().toLocaleString()
+  };
+
+  orders.push(order);
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  cart = [];
+  alert("Order placed!");
+}
+
+// 📜 ORDER HISTORY (30 days)
+function viewOrders() {
+  let last30 = orders.filter(o => {
+    let d = new Date(o.date);
+    let now = new Date();
+    return (now - d) <= (30 * 24 * 60 * 60 * 1000);
+  });
+
+  console.log(last30);
+  alert("Check console for orders");
+}
+
+// CATEGORY
+function showCategory(cat) {
+  let filtered = products.filter(p => p.category === cat);
+  displayProducts(filtered);
+}
+
+function showAll() {
+  displayProducts(products);
+}
