@@ -5,20 +5,18 @@ body {
   color: white;
 }
 
-/* TOP BAR */
+/* TOP */
 .topbar {
   background: gold;
   color: black;
   text-align: center;
   padding: 5px;
-  font-size: 12px;
 }
 
 /* HEADER */
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 15px;
   border-bottom: 1px solid gold;
 }
@@ -26,23 +24,43 @@ header {
 header h1 {
   color: gold;
   font-size: 26px;
-  letter-spacing: 2px;
   text-shadow: 0 0 10px gold;
 }
 
-.menu, .icons i {
-  font-size: 18px;
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  left: -250px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: black;
+  transition: 0.3s;
+  padding: 20px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 15px 0;
 }
 
 /* SLIDER */
 .slider {
-  height: 250px;
-  overflow: hidden;
+  height: 200px;
 }
 
 .slide {
   width: 100%;
-  height: 250px;
+  height: 200px;
   display: none;
 }
 
@@ -50,59 +68,46 @@ header h1 {
   display: block;
 }
 
-/* SECTION */
-.section-title {
+/* INTRO */
+.intro {
   text-align: center;
-  margin: 15px;
-  color: gold;
+  padding: 20px;
 }
 
 /* PRODUCTS */
 .products {
+  padding: 10px;
+}
+
+.product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  padding: 10px;
 }
 
 .card {
   background: #111;
-  padding: 10px;
-  border-radius: 10px;
   border: 1px solid gold;
+  border-radius: 10px;
+  padding: 10px;
   text-align: center;
 }
 
 .card img {
   width: 100%;
-  border-radius: 5px;
+  height: 140px;
+  object-fit: cover;
 }
 
-.price {
+.card h4 {
   color: gold;
-  font-weight: bold;
-}
-
-.desc {
-  font-size: 12px;
-  color: #ccc;
 }
 
 button {
   background: gold;
-  color: black;
   border: none;
   padding: 10px;
   width: 100%;
-  border-radius: 5px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  border-top: 1px solid gold;
-  margin-top: 20px;
 }
 
 /* WhatsApp */
@@ -111,7 +116,7 @@ footer {
   bottom: 20px;
   right: 20px;
   background: green;
-  color: white;
   padding: 15px;
   border-radius: 50%;
+  color: white;
 }
