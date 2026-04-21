@@ -1,77 +1,22 @@
-const list = document.getElementById("product-list");
-const search = document.getElementById("search");
-
-let cart = [];
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-function displayProducts(items) {
-  list.innerHTML = "";
-  items.forEach(p => {
-    list.innerHTML += `
-      <div class="product">
-        <img src="${p.image}">
-        <h4>${p.name}</h4>
-        <p>Rs. ${p.price}</p>
-        <button onclick="addToCart(${p.id})">Add</button>
-      </div>
-    `;
-  });
-}
-
-displayProducts(products);
-
-// 🔍 SEARCH
-search.addEventListener("keyup", () => {
-  let value = search.value.toLowerCase();
-  let filtered = products.filter(p =>
-    p.name.toLowerCase().includes(value)
-  );
-  displayProducts(filtered);
-});
-
-// 🛒 CART
-function addToCart(id) {
-  let item = products.find(p => p.id === id);
-  cart.push(item);
-  alert("Added to cart");
-}
-
-// 📦 ORDER
-function viewCart() {
-  let total = cart.reduce((sum, p) => sum + p.price, 0);
-  if (cart.length === 0) return alert("Cart empty");
-
-  let order = {
-    items: cart,
-    total: total,
-    date: new Date().toLocaleString()
-  };
-
-  orders.push(order);
-  localStorage.setItem("orders", JSON.stringify(orders));
-
-  cart = [];
-  alert("Order placed!");
-}
-
-// 📜 ORDER HISTORY (30 days)
-function viewOrders() {
-  let last30 = orders.filter(o => {
-    let d = new Date(o.date);
-    let now = new Date();
-    return (now - d) <= (30 * 24 * 60 * 60 * 1000);
-  });
-
-  console.log(last30);
-  alert("Check console for orders");
-}
-
-// CATEGORY
-function showCategory(cat) {
-  let filtered = products.filter(p => p.category === cat);
-  displayProducts(filtered);
-}
-
-function showAll() {
-  displayProducts(products);
-}
+const products = [
+  {id:1, name:"Laptop", price:50000, img:"https://via.placeholder.com/150?text=Laptop"},
+  {id:2, name:"Mobile", price:40000, img:"https://via.placeholder.com/150?text=Mobile"},
+  {id:3, name:"Headphones", price:2500, img:"https://via.placeholder.com/150?text=Headphones"},
+  {id:4, name:"Smart Watch", price:3500, img:"https://via.placeholder.com/150?text=Watch"},
+  {id:5, name:"Kids Toy Car", price:1200, img:"https://via.placeholder.com/150?text=Toy"},
+  {id:6, name:"Lipstick", price:800, img:"https://via.placeholder.com/150?text=Makeup"},
+  {id:7, name:"Perfume", price:1500, img:"https://via.placeholder.com/150?text=Perfume"},
+  {id:8, name:"Handbag", price:2200, img:"https://via.placeholder.com/150?text=Bag"},
+  {id:9, name:"Shoes", price:3000, img:"https://via.placeholder.com/150?text=Shoes"},
+  {id:10, name:"Bluetooth Handfree", price:1800, img:"https://via.placeholder.com/150?text=Handfree"},
+  {id:11, name:"Gold Ring", price:7000, img:"https://via.placeholder.com/150?text=Ring"},
+  {id:12, name:"Necklace", price:4500, img:"https://via.placeholder.com/150?text=Jewelry"},
+  {id:13, name:"Baby Milk Bottle", price:600, img:"https://via.placeholder.com/150?text=Baby"},
+  {id:14, name:"Face Wash", price:500, img:"https://via.placeholder.com/150?text=Facewash"},
+  {id:15, name:"T-Shirt", price:900, img:"https://via.placeholder.com/150?text=Clothes"},
+  {id:16, name:"Jeans", price:2000, img:"https://via.placeholder.com/150?text=Jeans"},
+  {id:17, name:"Keyboard", price:1500, img:"https://via.placeholder.com/150?text=Keyboard"},
+  {id:18, name:"Mouse", price:700, img:"https://via.placeholder.com/150?text=Mouse"},
+  {id:19, name:"Power Bank", price:2500, img:"https://via.placeholder.com/150?text=PowerBank"},
+  {id:20, name:"Speaker", price:3000, img:"https://via.placeholder.com/150?text=Speaker"}
+];
