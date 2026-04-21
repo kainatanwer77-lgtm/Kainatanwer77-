@@ -1,21 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Kainat AI Store</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kainat Store</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
+<!-- 🔥 TOP BAR -->
+<div class="topbar">
+  Welcome to Kainat Store | Premium Collection
+</div>
+
+<!-- 🔥 HEADER -->
 <header>
-  <input type="text" id="search" placeholder="Search products..." onkeyup="aiSearch()">
-  <div id="suggestions"></div>
+  <div class="menu"><i class="fa fa-bars"></i></div>
+  <h1>Kainat Store</h1>
+  <div class="icons">
+    <i class="fa fa-search"></i>
+    <i class="fa fa-shopping-bag"></i>
+  </div>
 </header>
 
-<h3 style="padding:10px;">🔥 Products</h3>
-<div id="products"></div>
+<!-- 🔥 SLIDER -->
+<div class="slider">
+  <img src="https://via.placeholder.com/600x250/000000/FFD700?text=Big+Sale" class="slide active">
+  <img src="https://via.placeholder.com/600x250/000000/FFD700?text=New+Arrivals" class="slide">
+  <img src="https://via.placeholder.com/600x250/000000/FFD700?text=Luxury+Products" class="slide">
+</div>
+
+<!-- 🔥 SECTION TITLE -->
+<h2 class="section-title">Our Products</h2>
+
+<!-- 🔥 PRODUCTS -->
+<section class="products">
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200">
+    <h3>Luxury Watch</h3>
+    <p class="price">Rs. 4500</p>
+    <p class="desc">Premium quality stylish watch</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200">
+    <h3>Gold Perfume</h3>
+    <p class="price">Rs. 2500</p>
+    <p class="desc">Long lasting fragrance</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200">
+    <h3>Leather Wallet</h3>
+    <p class="price">Rs. 1800</p>
+    <p class="desc">Premium leather quality</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200">
+    <h3>Stylish Shoes</h3>
+    <p class="price">Rs. 3200</p>
+    <p class="desc">Comfort + fashion</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+</section>
+
+<!-- 🔥 FOOTER -->
+<footer>
+  <h3>Kainat Store</h3>
+  <p>📍 Your Address Here</p>
+  <p>📞 03XXXXXXXXX</p>
+  <p>📧 your@email.com</p>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/92XXXXXXXXXX" class="whatsapp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
 
 <script src="script.js"></script>
 
 </body>
-</html>
+  </html>
