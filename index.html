@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kainat Store</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,29 +11,40 @@
 
 <!-- HEADER -->
 <header>
-  <div class="logo">🛍️ Kainat Store</div>
+  <h2>Kainat Store</h2>
   <input type="text" placeholder="Search products...">
 </header>
 
-<!-- CUSTOMER FORM -->
-<div class="form">
-  <input type="text" id="name" placeholder="Customer Name">
-  <input type="text" id="phone" placeholder="Phone Number">
+<!-- MAIN -->
+<div class="container">
+
+  <!-- LEFT CATEGORY -->
+  <div class="categories">
+    <ul>
+      <li onclick="filterProducts('all')">All</li>
+      <li onclick="filterProducts('electronics')">Electronics</li>
+      <li onclick="filterProducts('cosmetics')">Cosmetics</li>
+      <li onclick="filterProducts('kids')">Kids</li>
+      <li onclick="filterProducts('jewelry')">Jewelry</li>
+      <li onclick="filterProducts('fashion')">Fashion</li>
+    </ul>
+  </div>
+
+  <!-- RIGHT PRODUCTS -->
+  <div class="products" id="productList">
+    <!-- JS se load honge -->
+  </div>
+
 </div>
 
-<!-- PRODUCTS -->
-<div id="products" class="products"></div>
-
-<!-- INVOICE -->
-<div id="invoice" class="invoice"></div>
-
-<!-- NAV -->
-<div class="nav">
-  <button onclick="showHome()">Home</button>
-  <button onclick="showCart()">Cart</button>
-  <button onclick="showOrders()">Orders</button>
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button>Home</button>
+  <button>Categories</button>
+  <button>Cart</button>
+  <button>Account</button>
 </div>
 
 <script src="script.js"></script>
 </body>
-    </html>
+</html>
