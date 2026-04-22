@@ -1,68 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kainat Store</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kainat Store – Premium Fashion</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
-
-<!-- CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=DM+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="ldr">
-  <div class="ld-logo">Kainat Store</div>
-  <div class="ld-bar"><div class="ld-fill"></div></div>
-</div>
+<div id="ldr">Kainat Store Loading...</div>
 
-<!-- NAVBAR -->
 <nav>
-  <div class="nav-in">
-    <a href="#" class="nav-logo">Kainat Store</a>
-    <div class="nav-search">
-      <input type="text" placeholder="Search...">
-    </div>
-    <button class="nav-btn" onclick="openCart()">🛒 Cart <span id="cBadge">0</span></button>
-  </div>
+<h2>Kainat Store</h2>
+<button onclick="openCart()">Cart (<span id="cBadge">0</span>)</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <h1>Welcome to Kainat Store</h1>
-  <p>Best Fashion in Pakistan 🇵🇰</p>
-  <a href="#products" class="btn">Shop Now</a>
+<h1>Premium Fashion</h1>
+<p>Best Quality – Fast Delivery</p>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products">
-  <h2 style="padding:20px;">Products</h2>
-  <div class="prod-grid" id="mainG"></div>
-</section>
+<div class="prod-grid" id="mainG"></div>
 
-<!-- CART DRAWER -->
-<div class="overlay" id="ov" onclick="closeCart()"></div>
-
-<div class="cart-drw" id="cartDrw">
-  <h3 style="padding:10px;">My Cart</h3>
-  <p style="padding:10px;">Total: <span id="cTotal">Rs. 0</span></p>
-  <button onclick="openCheckout()" style="margin:10px;">Checkout</button>
+<div id="cart" class="cart">
+<h3>Cart</h3>
+<div id="cartItems"></div>
+<p>Total: Rs <span id="cTotal">0</span></p>
+<button onclick="checkout()">Order</button>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 Kainat Store</p>
-</footer>
-
-<!-- TOP BUTTON -->
-<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<!-- JS -->
 <script src="script.js"></script>
-
 </body>
 </html>
