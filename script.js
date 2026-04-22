@@ -1,80 +1,44 @@
-// PRODUCTS DATA
-const products = [
-  {id:1, name:"Embroidered Lawn Suit", price:3500, img:"https://images.pexels.com/photos/2220316/pexels-photo-2220316.jpeg"},
-  {id:2, name:"Formal Shirt", price:2200, img:"https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg"},
-  {id:3, name:"Leather Bag", price:6500, img:"https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg"},
-  {id:4, name:"Sneakers", price:4800, img:"https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg"}
+const products=[
+{id:1,name:"Dress",price:3000,img:"https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg"},
+{id:2,name:"Shirt",price:2000,img:"https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg"},
+{id:3,name:"Shoes",price:5000,img:"https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg"}
 ];
 
-// CART
-let cart = [];
+let cart=[];
 
-// LOAD PRODUCTS
 function loadProducts(){
-  const grid = document.getElementById("mainG");
-  if(!grid) return;
-
-  grid.innerHTML = products.map(p => `
-    <div class="p-card">
-      <img src="${p.img}">
-      <div class="p-body">
-        <div class="p-name">${p.name}</div>
-        <div class="p-now">Rs. ${p.price}</div>
-        <button onclick="addToCart(${p.id})">Add to Cart</button>
-      </div>
-    </div>
-  `).join("");
+const grid=document.getElementById("mainG");
+grid.innerHTML=products.map(p=>`
+<div class="card">
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<p>Rs ${p.price}</p>
+<button onclick="addToCart(${p.id})">Add</button>
+</div>
+`).join("");
 }
 
-// ADD TO CART
 function addToCart(id){
-  const product = products.find(p => p.id === id);
-  cart.push(product);
-  updateCart();
-  alert("Item added to cart");
+const item=products.find(p=>p.id===id);
+cart.push(item);
+updateCart();
 }
 
-// UPDATE CART
 function updateCart(){
-  const count = document.getElementById("cBadge");
-  const total = document.getElementById("cTotal");
-
-  if(count) count.innerText = cart.length;
-
-  let sum = 0;
-  cart.forEach(i => sum += i.price);
-
-  if(total) total.innerText = "Rs. " + sum;
+document.getElementById("cBadge").innerText=cart.length;
+let total=0;
+cart.forEach(i=>total+=i.price);
+document.getElementById("cTotal").innerText=total;
 }
 
-// OPEN CART
 function openCart(){
-  document.getElementById("cartDrw").classList.add("on");
-  document.getElementById("ov").classList.add("on");
+document.getElementById("cart").style.display="block";
 }
 
-// CLOSE CART
-function closeCart(){
-  document.getElementById("cartDrw").classList.remove("on");
-  document.getElementById("ov").classList.remove("on");
+function checkout(){
+alert("Order placed!");
+cart=[];
+updateCart();
 }
 
-// CHECKOUT
-function openCheckout(){
-  if(cart.length === 0){
-    alert("Cart empty hai");
-    return;
-  }
-  alert("Order placed (demo)");
-  cart = [];
-  updateCart();
-}
-
-// LOADER HIDE
-window.onload = () => {
-  loadProducts();
-  setTimeout(()=>{
-    const ldr = document.getElementById("ldr");
-    if(ldr) ldr.style.display = "none";
-  },1000);
-};
+window.onload=loadProducts;
